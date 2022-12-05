@@ -1,0 +1,1 @@
+export const BLOG_FETCH_SUCCESS = "blogs/fetchSuccess"

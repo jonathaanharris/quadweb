@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const secretKey = "secretpokoknya"
+const secretKey = process.env.SECRET_KEY
 
 const payloadToToken = (payload) => {
   return jwt.sign(payload, secretKey, { expiresIn: '24h' })

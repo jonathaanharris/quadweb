@@ -1,0 +1,142 @@
+.container-fluid {
+  /* padding: 7em 0; */
+  /* max-width: 960px; */
+  background: #121212;
+  min-height: 100vh;
+  max-width: 1280px;
+}
+
+#my-navbar {
+  height: 20%;
+}
+
+.search {
+  border: none;
+  height: 40px;
+  color: black !important;
+  border: 1px solid transparent;
+  background: white;
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
+.content {
+  background: #ffffff;
+  padding: 60px 40px 40px 40px;
+  height: 100%;
+}
+.judulhalaman {
+  color: #121212;
+  border-bottom: 0px solid #222222;
+  padding: 0px 0px 0px 0px;
+  font-size: 16px;
+  line-height: 26px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  opacity: 0.3;
+}
+.listartikel {
+  margin-bottom: 20px;
+  padding: 0px 12px;
+  text-align: center;
+}
+.listartikel a {
+  text-decoration: none;
+  color: #1a1b1f;
+}
+.thumbnailartikel {
+  background: #f5f6f8;
+  border-radius: 8px;
+  border-radius: 0px;
+  overflow: hidden;
+}
+.thumbnailartikel img {
+  width: 100%;
+}
+.contentsmallartikel {
+  padding: 20px 20px 40px 0px;
+  text-align: left;
+}
+.listartikel_tanggalmenulisartikel {
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 11px;
+  color: #000000;
+  opacity: 0.5;
+  letter-spacing: 0.2;
+  padding: 0px 0px 10px;
+}
+.small_judulartikel {
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 34px;
+  letter-spacing: 0px;
+  color: #121212;
+  margin-bottom: 16px;
+}
+.small_synopsis {
+  font-size: 15px;
+  line-height: 23px;
+  color: #323947;
+  font-weight: 200;
+}
+
+.btn-search {
+  width: 70px;
+  height: 40px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  background: #fbceb5 !important;
+  font-weight: 600;
+}
+
+.btn-search span {
+  margin: auto;
+}
+
+input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background: white;
+  width: 70%;
+}
+
+input:focus {
+  outline: none;
+}
+
+.menu {
+  padding: 30px 18px;
+}
+
+.menu a.active {
+  opacity: 1;
+}
+
+.menu a {
+  color: #ffffff !important;
+  text-decoration: none;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-right: 40px;
+  color: #082431;
+  opacity: 0.5;
+}
