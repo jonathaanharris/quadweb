@@ -18,7 +18,7 @@ const Navbar = () => {
     <div className="col-lg-3 col-md-3 col-3">
       <div className="menu row align-items-center justify-content-end">
         <Link href="learn.html" className="a_menudesktop">Log out</Link>
-        <Link href="blog.html" class="a_menudesktop" style={{ marginRight: "0px" }}>Log in</Link>
+        <Link to="/login" href="blog.html" class="a_menudesktop" style={{ marginRight: "0px" }}>Log in</Link>
       </div>
     </div>
   </div>)

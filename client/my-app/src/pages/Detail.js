@@ -5,10 +5,66 @@ import { } from "react-router-dom";
 import './detailpage.css'
 import { useSelector, useDispatch } from 'react-redux'
 import Navbar from "../components/Navbar"
+import { useParams } from 'react-router-dom';
+import { useEffect } from "react";
+import { fetchById } from "../store/action/blog";
+import { fetchCommentById } from "../store/action/comment";
+import Comment from "../components/Comment";
+import { addComment, deleteComment } from "../store/action/comment";
+import swal from "sweetalert"
+
+function Detail(props) {
+  const { id } = useParams();
+  const dispatch = useDispatch()
+  let { blogDetail, err } = useSelector((state) => state.blogReducer)
+  let { comments, errComment } = useSelector((state) => state.commentReducer)
+  const [comment, setComment] = useState('')
+  const navigate = useNavigate()
+
+  let isoDate = blogDetail ? new Date(blogDetail.createdAt) : ""
+
+  useEffect(() => {
+    dispatch(fetchById(id))
+    dispatch(fetchCommentById(id))
+  }, [])
+
+  const commentHandler = (e) => {
+    setComment(e.target.value)
+  }
+
+  const submitHandler = (e) => {
+    let payload = { text: comment }
+    e.preventDefault();
+
+    dispatch(addComment(id, payload))
+      .then(data => {
+        dispatch(fetchCommentById(id))
+        swal('Add comment success')
+        setComment("")
+        navigate(`/blog/${id}`)
+      })
+      .catch(err => {
+        swal(err.message)
+      })
+  }
+  const deleteHandler = (e, idc) => {
+    e.preventDefault();
+    dispatch(deleteComment(idc))
+      .then(data => {
+        dispatch(fetchCommentById(id))
+        swal('delete comment success')
+        setComment("")
+        navigate(`/blog/${id}`)
+      })
+      .catch(err => {
+        swal(err.message)
+      })
+  }
 
 
-function Detail() {
-
+  if (err) return <div>error:{err.message}</div>
+  if (errComment) return <div>error:{errComment.message}</div>
+  if (!blogDetail || !comments) return <div>loading</div>
 
   return (
     <div className="container-fluid">
@@ -16,56 +72,38 @@ function Detail() {
 
       <div className="paddingsummary">
         <div className="bordersummary">
-          <div className="judulartikelnew">Ide buntu? paksa dirimu untuk membuat design selama 30 menit</div>
-          <div className="publishdate">16th March 2022</div>
-          <div className="postedby">Posted by <span>Jonathan</span></div>
+          <div className="judulartikelnew">{blogDetail.title}</div>
+          <div className="publishdate">{isoDate ? isoDate.toDateString() : ""}</div>
+          <div className="postedby">Posted by <span>{blogDetail.User.username}</span></div>
           <div className="viewsblog">
-            <div class="count-container">
-              <div class="count">304<span> views</span></div>
+            <div className="count-container">
+              <div className="count">{blogDetail.count}<span> views</span></div>
             </div>
           </div>
         </div>
         <div className="thumbnail">
-          <div class="thumbnail_sizing">
-            <img src="https://images.pexels.com/photos/20787/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=350" alt="" />
+          <div className="thumbnail_sizing">
+            <img src={blogDetail.image} alt="" />
           </div>
         </div>
-        <div className="textblog">
+        <div className="textblog isiartikel">
           <div className="isiartikel">
-            <div class="textartikel text-justify">
-              "We hope the FIFA World Cup will be successful and full of opportunities and collaboration potentials between our two countries. We will prepare our creative economy products and promote them to the world," he added during his visit to Doha, Qatar, according to a statement issued on Saturday.
+            <div className="textartikel text-justify">
+              {blogDetail.description}
             </div>
           </div>
         </div>
         <div className="comment">
-          <div class="judulhalaman">
+          <div className="judulhalaman">
             Comments
           </div>
           <div className="inputcomment">
-            <div class="d-flex flex-row add-comment-section mt-4 mb-4"><input type="text" class="form-control mr-3" placeholder="Add comment" /><button class="btn btn-primary" type="button">Comment</button></div>
+            <form className="d-flex flex-row add-comment-section mt-4 mb-4" onSubmit={submitHandler}>
+              <input onChange={commentHandler} type="text" className="form-control mr-3" placeholder="Add comment" value={comment} />
+              <button className="btn btn-primary" type="submit">Comment</button>
+            </form>
           </div>
-          <div class="row blogtestimonial_right">
-            <div className="col-lg-10 col-md-10 col-10">
-              <div class="blogtestimonial_text">
-                "Blog nya om  @dwinawan_ sangat mudah dipahami dan enak dibacanya"
-              </div>
-              <div class="blogtestimonial_user">@dadimdum</div>
-            </div>
-            <div className="col-lg-2 col-md-2 col-2 justify-content-end">
-              <button type="button" class="btn-sm btn-danger">X</button>
-            </div>
-          </div>
-          <div class="row blogtestimonial_right">
-            <div className="col-lg-10 col-md-10 col-10">
-              <div class="blogtestimonial_text">
-                "Blog nya om  @dwinawan_ sangat mudah dipahami dan enak dibacanya, bahkan saya masih sering mampir buat pengingat atau referensi. Kudos om 🤝."
-              </div>
-              <div class="blogtestimonial_user">@dadimdum</div>
-            </div>
-            <div className="col-lg-2 col-md-2 col-2">
-              <button type="button" class="btn-sm btn-danger">X</button>
-            </div>
-          </div>
+          {comments ? comments.map((comment, index) => <Comment key={comments.id} data={comment} authorId={comment.User.id} deleteHandler={deleteHandler}></Comment>) : <div>loading</div>}
         </div>
       </div>
 

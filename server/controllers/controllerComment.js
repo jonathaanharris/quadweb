@@ -17,7 +17,6 @@ class ControllerComment {
   }
   static async update(req, res, next) {
     try {
-      console.log(20)
       const { id } = req.params
       const { text } = req.body
 

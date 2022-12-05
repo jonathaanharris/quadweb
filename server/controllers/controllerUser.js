@@ -22,7 +22,7 @@ class ControllerUser {
       const detailUser = await User.findOne({ where: { email } })
       if (detailUser) {
         if (comparePassword(password, detailUser.password)) {
-          const payload = { id: detailUser.id, email: detailUser.email }
+          const payload = { id: detailUser.id, email: detailUser.email, username: detailUser.username }
           const accessToken = payloadToToken(payload)
           res.status(200).json({ message: 'Login Successfull', acces_token: accessToken, user_role: detailUser.role })
         } else {

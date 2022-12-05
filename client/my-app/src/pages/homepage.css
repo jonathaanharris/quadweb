@@ -43,12 +43,12 @@
   margin-bottom: 40px;
   opacity: 0.3;
 }
-.listartikel {
+.blogcard {
   margin-bottom: 20px;
   padding: 0px 12px;
   text-align: center;
 }
-.listartikel a {
+.blogcard a {
   text-decoration: none;
   color: #1a1b1f;
 }
@@ -65,7 +65,7 @@
   padding: 20px 20px 40px 0px;
   text-align: left;
 }
-.listartikel_tanggalmenulisartikel {
+.blogdate {
   font-weight: normal;
   font-size: 11px;
   line-height: 11px;

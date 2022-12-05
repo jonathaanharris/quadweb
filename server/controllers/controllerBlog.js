@@ -82,7 +82,13 @@ class ControllerBlog {
   static async getById(req, res, next) {
     try {
       const { id } = req.params
-      const result = await Blog.findByPk(id)
+      const result = await Blog.findByPk(id, {
+        include: {
+          model: User,
+          required: true,
+          attributes: { exclude: ['password', 'createdAt', 'updatedAt'] }
+        }
+      })
       if (result) {
         result.increment("count", { by: 1 })
         res.status(200).json(result)

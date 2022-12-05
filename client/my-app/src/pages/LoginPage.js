@@ -2,21 +2,45 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import './loginpage.css';
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux"
+import { LoginHandler } from "../store/action/user";
+import swal from "sweetalert"
 
 function LoginPage() {
-
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const emailHandler = (e) => {
+    setEmail(e.target.value)
+  }
+  const passwordHandler = (e) => {
+    setPassword(e.target.value)
+  }
+  const submitHandler = (e) => {
+    let payload = { email, password }
+    console.log(payload)
+    e.preventDefault();
+    dispatch(LoginHandler(payload))
+      .then(() => {
+        if (localStorage.getItem('accessToken')) {
+          swal('Login Successful')
+          navigate('/')
+        }
+      })
+  }
 
   return (
     <div className="container">
       <div className="dark row justify-content-center">
         <div className="login-wrap p-0">
           <h3 className="mb-4 text-center">Have an account?</h3>
-          <form action="#" class="signin-form">
+          <form action="#" className="signin-form" onSubmit={submitHandler}>
             <div className="form-group">
-              <input type="text" class="form-control" placeholder="Email" required="" />
+              <input type="text" className="form-control" placeholder="Email" required onChange={emailHandler} />
             </div>
             <div className="form-group">
-              <input id="password-field" type="password" className="form-control" placeholder="Password" required="" />
+              <input id="password-field" type="password" className="form-control" placeholder="Password" required onChange={passwordHandler} />
               <span toggle="#password-field" className="fa fa-fw fa-eye field-icon toggle-password"></span>
             </div>
             <div className="form-group">
@@ -29,10 +53,7 @@ function LoginPage() {
           <Link className="text-white w-100 text-center" to="/register" relative="path">
             — Or Register Here —
           </Link>
-          {/* <div class="social d-flex text-center">
-	          	<a href="#" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Facebook</a>
-	          	<a href="#" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Twitter</a>
-	          </div> */}
+
         </div>
       </div>
     </div>
