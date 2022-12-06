@@ -5,11 +5,11 @@ import Navbar from "../components/Navbar"
 import { useDispatch, useSelector } from 'react-redux'
 import { addBlog, fetchAll, updateBlog } from "../store/action/blog";
 import swal from "sweetalert"
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function FormBlog(props) {
-  const { blogDetail, err } = useSelector((state) => state.blogReducer)
+  const { blogDetail } = useSelector((state) => state.blogReducer)
   const dispatch = useDispatch()
   const [title, setTitle] = useState(props.update && blogDetail ? blogDetail.title : '')
   const [imageUrl, setImageUrl] = useState(props.update && blogDetail ? blogDetail.image : '')

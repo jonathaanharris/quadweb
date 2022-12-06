@@ -1,5 +1,3 @@
-import { LOGIN_SUCCESS } from "./type"
-
 export const LoginHandler = (data) => {
   return (dispatch) => {
     return fetch('http://localhost:8080/users/login', {
