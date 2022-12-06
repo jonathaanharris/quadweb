@@ -9,9 +9,7 @@ const authentication = async (req, res, next) => {
     }
     const payload = tokenToPayload(token)
     const user = await User.findByPk(payload.id)
-    if (!user) {
-      throw ({ code: 401, name: 'user_invalid', message: 'invalid user' })
-    }
+
     req.loginUser = {
       id: user.id,
       role: user.role

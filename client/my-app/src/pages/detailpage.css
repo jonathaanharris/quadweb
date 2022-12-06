@@ -140,18 +140,21 @@ input:focus {
   justify-content: center;
   align-items: center;
 }
+
 .thumbnail_sizing img {
   width: 60%;
 }
 
 .textblog {
   background: #ffffff;
-  padding: 10px 0px;
+  padding: 30px 0px;
 }
+
 .isiartikel {
   max-width: 1000px;
   margin: 0 auto;
 }
+
 .textartikel {
   font-size: 20px;
   line-height: 35px;

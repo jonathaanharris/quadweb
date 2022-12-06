@@ -1,9 +1,10 @@
 import { BLOG_FETCH_SUCCESS, BLOG_DETAIL_SUCCESS, FETCH_ERROR } from "./type";
 
-export const fetchAll = () => {
+export const fetchAll = (obj) => {
+  const qParam = '?' + new URLSearchParams(obj).toString();
   let err = false
   return (dispatch) => {
-    return fetch(`http://localhost:8080/blogs`)
+    return fetch(`http://localhost:8080/blogs${qParam}`)
       .then(res => {
         if (!res.ok) {
           err = true
@@ -34,63 +35,62 @@ export const fetchById = (id) => {
   }
 }
 
-export const updateContact = (data, id) => {
+export const addBlog = (data) => {
   return (dispatch) => {
-    console.log(JSON.stringify(data), id, 388888)
-    return fetch(`http://localhost:8080/contact/${id}`, {
-      method: "PATCH",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error('something went wrong')
-        }
-        return res.json
-      })
-      .then(data => {
-        return data
-      })
-  }
-}
-export const addContact = (data) => {
-  return (dispatch) => {
-    console.log(JSON.stringify(data))
-    return fetch('http://localhost:8080/contact', {
+    return fetch('http://localhost:8080/blogs', {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-
+        "Content-Type": "application/json", token: localStorage.getItem('accessToken')
       },
       body: JSON.stringify(data)
     })
       .then(res => {
-        if (!res.ok) {
-          throw new Error('something went wrong')
+        if (res.ok) {
+          return res.json
         }
-        return res.json
-      })
-      .then(data => {
-
-        return data
+        return res.json().then(data => {
+          throw new Error(data.message)
+        })
       })
   }
 }
 
-export const deleteContact = (data) => {
+export const updateBlog = (id, data) => {
   return (dispatch) => {
-    return fetch(`http://localhost:8080/contact/${data}`, {
-      method: "DELETE"
+    return fetch(`http://localhost:8080/blogs/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json", token: localStorage.getItem('accessToken')
+      },
+      body: JSON.stringify(data)
     })
       .then(res => {
-        if (!res.ok) {
-          throw new Error('something went wrong')
+        if (res.ok) {
+          return res.json
         }
-        return res.json
+        return res.json().then(data => {
+          throw new Error(data.message)
+        })
       })
-      .then(data => data)
+  }
+}
+
+export const deleteBlog = (id) => {
+  return (dispatch) => {
+    return fetch(`http://localhost:8080/blogs/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json", token: localStorage.getItem('accessToken')
+      }
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json
+        }
+        return res.json().then(data => {
+          throw new Error(data.message)
+        })
+      })
   }
 }
 

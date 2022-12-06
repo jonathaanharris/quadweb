@@ -7,7 +7,6 @@ class ControllerUser {
       const { email, password, username } = req.body
       let role = 'member'
       const result = await User.create({ email, password, username, role })
-
       res.status(201).json({ id: result.id, email: result.email })
     } catch (err) {
       next(err)
@@ -24,7 +23,7 @@ class ControllerUser {
         if (comparePassword(password, detailUser.password)) {
           const payload = { id: detailUser.id, email: detailUser.email, username: detailUser.username }
           const accessToken = payloadToToken(payload)
-          res.status(200).json({ message: 'Login Successfull', acces_token: accessToken, user_role: detailUser.role })
+          res.status(200).json({ message: 'Login Successfull', access_token: accessToken, user_role: detailUser.role })
         } else {
           throw ({ code: 401, name: 'invaliduser', message: 'invalid username or email or password' })
         }
