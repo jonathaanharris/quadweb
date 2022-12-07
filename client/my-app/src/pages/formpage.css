@@ -1,0 +1,101 @@
+.container-fluid {
+  /* padding: 7em 0; */
+  /* max-width: 960px; */
+  background: #121212;
+  min-height: 100vh;
+  max-width: 1280px;
+  height: 100%;
+}
+
+#my-navbar {
+  height: 20%;
+  padding-right: 35px;
+  padding-left: 35px;
+}
+
+.search {
+  border: none;
+  height: 30px;
+  /* height: 50px; */
+  color: black !important;
+  border: 1px solid transparent;
+  background: white;
+  border-top-left-radius: 40px;
+  border-bottom-left-radius: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  width: 50%;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+}
+
+.btn-search {
+  width: 70px;
+  height: 40px;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  background: #fbceb5 !important;
+  font-weight: 600;
+}
+
+.btn-search span {
+  margin: auto;
+}
+
+.search input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  background: white;
+  width: 100%;
+}
+
+.search input:focus {
+  outline: none;
+}
+
+.menu {
+  padding: 30px 0px;
+}
+
+.menu a.active {
+  opacity: 1;
+}
+
+.menu a {
+  color: #ffffff !important;
+  text-decoration: none;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-right: 40px;
+  color: #082431;
+  opacity: 0.5;
+}
+
+.formblog {
+  padding: 30px 20px;
+}
+.isiform {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.isiform form {
+  margin-top: 50px;
+}
+label {
+  color: #ffffff !important;
+  font-size: 17px;
+  text-decoration: none;
+  opacity: 0.5;
+}
