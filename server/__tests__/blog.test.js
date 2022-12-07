@@ -8,6 +8,8 @@ jest.setTimeout(1000)
 
 let validToken, validToken2, userId
 
+let invalidToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb25hdGhhbkBtYWlsLmNvbSIsInVzZXJuYW1lIjoiSm9uYXRoYW4iLCJpYXQiOjE2NzA0MjA1NzAsImV4cCI6MTY3MDQyMDYzMH0.aNfJ-JYjZyhCRtx8cOpLRCTse9oHkwOTa-BLf32jHwE"
+
 let blog = {
   "title": "ini title",
   "description": "ini desc",
@@ -153,7 +155,7 @@ describe("GET /blogs", () => {
 });
 
 describe("POST /blogs", () => {
-  describe("201 create new blog", () => {
+  describe("Create new blog", () => {
     test("201 Success create new blog - should create new blog", (done) => {
       request(app)
         .post(`/blogs`)
