@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export default function Card(props) {
   let isoDate = new Date(props.data.createdAt)
   return (
-    <Link className="col-md-6 col-lg-4 col-sm-6 mr-auto" to={`/blog/${props.data.id}`}>
+    <Link className="col-md-6 col-lg-4 col-sm-6 mx-auto" to={`/blog/${props.data.id}`}>
       <div className="blogcard">
         <div className="articlethumbnail d-flex align-items-center"><img className="" alt="" src={props.data.image} /></div>
         <div className="contentsmallartikel">
