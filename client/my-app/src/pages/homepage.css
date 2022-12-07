@@ -42,7 +42,7 @@
   text-transform: uppercase;
 }
 
-.judulhalaman {
+.titlepage {
   color: #121212;
   border-bottom: 0px solid #222222;
   padding: 0px 0px 0px 0px;
@@ -58,19 +58,21 @@
   margin-bottom: 20px;
   padding: 0px 12px;
   text-align: center;
+  width: 330px;
 }
 .blogcard a {
   text-decoration: none;
   color: #1a1b1f;
 }
-.thumbnailartikel {
+.articlethumbnail {
   height: 300px;
+  width: 100%;
   background: #f5f6f8;
   border-radius: 8px;
   border-radius: 0px;
   overflow: hidden;
 }
-.thumbnailartikel img {
+.thumbnailarticle img {
   width: 100%;
 }
 .contentsmallartikel {
@@ -86,7 +88,7 @@
   letter-spacing: 0.2;
   padding: 0px 0px 10px;
 }
-.small_judulartikel {
+.sm_articletitle {
   font-weight: 600;
   font-size: 26px;
   line-height: 34px;
@@ -95,7 +97,7 @@
   margin-bottom: 16px;
 }
 
-.small_synopsis {
+.sm_synopsis {
   font-size: 15px;
   line-height: 23px;
   color: #323947;

@@ -13,7 +13,7 @@ import { useSearchParams } from 'react-router-dom';
 
 function App() {
   const dispatch = useDispatch()
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [page, setPage] = useState(1);
 
   const paginationHandler = (e, i) => {
@@ -38,7 +38,7 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/" element={<Home paginationHandler={paginationHandler} page={page} setPage={setPage} />} />
       <Route path="/blog/:id" element={<Detail />} />
-      <Route path="/newblog" element={<FormBlog />} />
+      <Route path="/newblog" element={<FormBlog setPage={setPage} />} />
       <Route path="/updateblog" element={<FormBlog update={true} />} />
       <Route path="/register" element={<RegisterPage />} />
     </Routes>

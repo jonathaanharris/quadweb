@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { deleteComment } from "../store/action/comment";
 
 export default function Comment(props) {
+  const isoDate = props.data.createdAt ? new Date(props.data.createdAt) : ""
 
   let user = localStorage.getItem('accessToken') ? jwt(localStorage.getItem('accessToken')) : ""
   return (
@@ -14,6 +15,7 @@ export default function Comment(props) {
           {props.data.text}
         </div>
         <div className="blogtestimonial_user">@{props.data.User.username}</div>
+        <div className="blogtestimonial_date">{isoDate ? isoDate.toDateString() : ""}</div>
       </div>
       <div className="col-lg-2 col-md-2 col-2 justify-content-end">
         {user && user.id === props.authorId ? <button onClick={(e) => { props.deleteHandler(e, props.data.id) }} type="button" className="btn-sm btn-danger">X</button> : ""}

@@ -1,6 +1,4 @@
 .container {
-  /* padding: 7em 0; */
-  /* max-width: 960px; */
   display: flex;
   justify-content: center;
   width: 100vw;
@@ -12,7 +10,6 @@
   background: #121212;
   padding: 20px 40px 40px 40px;
   width: 500px;
-  /* padding: 20px 40px 40px 40px; */
 }
 
 .login-wrap {

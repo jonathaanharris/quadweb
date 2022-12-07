@@ -28,10 +28,8 @@ function FormBlog(props) {
   }
 
   const submitHandler = (e) => {
-    let payload = { title, description }
+    let payload = { title, description, image: imageUrl }
     e.preventDefault();
-
-
     if (props.update) {
       dispatch(updateBlog(blogDetail.id, payload))
         .then(data => {
@@ -47,16 +45,14 @@ function FormBlog(props) {
         .then(data => {
           dispatch(fetchAll())
           swal('Add blog success')
+          props.setPage(1)
           navigate(`/`)
         })
         .catch(err => {
           swal(err.message)
         })
     }
-
-
   }
-
 
   return (
     <div className="container-fluid">
@@ -74,7 +70,7 @@ function FormBlog(props) {
             </div>
             <div className="form-group">
               <label>image Url</label>
-              <input onChange={imageUrlHandler} type="description" className="form-control" id="exampleInputTitle" aria-describedby="" placeholder="Title..." value={imageUrl} />
+              <input onChange={imageUrlHandler} type="description" className="form-control" id="exampleInputTitle" aria-describedby="" placeholder="Image Url..." value={imageUrl} />
             </div>
             <button type="submit" className="btn btn-primary">Submit</button>
           </form>

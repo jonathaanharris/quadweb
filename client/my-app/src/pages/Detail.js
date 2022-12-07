@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import Navbar from "../components/Navbar"
 import { useParams } from 'react-router-dom';
 import { useEffect } from "react";
-import { fetchById } from "../store/action/blog";
+import { fetchAll, fetchById } from "../store/action/blog";
 import { fetchCommentById } from "../store/action/comment";
 import Comment from "../components/Comment";
 import { addComment, deleteComment } from "../store/action/comment";
@@ -67,6 +67,7 @@ function Detail(props) {
     e.preventDefault();
     dispatch(deleteBlog(id))
       .then(data => {
+        dispatch(fetchAll())
         swal('delete blog success')
         navigate(`/`)
       })
@@ -74,19 +75,6 @@ function Detail(props) {
         swal(err.message)
       })
   }
-  // const updateBlogHandler = (e) => {
-  //   e.preventDefault();
-  //   dispatch(updateBlo(id))
-  //     .then(data => {
-  //       swal('delete blog success')
-  //       navigate(`/`)
-  //     })
-  //     .catch(err => {
-  //       swal(err.message)
-  //     })
-  // }
-
-
 
   if (err) return <div>error:{err.message}</div>
   if (errComment) return <div>error:{errComment.message}</div>
@@ -103,7 +91,7 @@ function Detail(props) {
           <div className="postedby">Posted by <span>{blogDetail.User.username}</span></div>
           <div className="viewsblog">
             <div className="count-container">
-              <div className="count">{blogDetail.count}<span> views</span></div>
+              <div className="count"><span>Viewed</span> {blogDetail.count}<span> times</span></div>
             </div>
           </div>
           {user && user.id === blogDetail.User.id ? <button type="button" className="btn-sm btn-danger my-2" onClick={deleteBlogHandler}>DELETE</button> : ""}
@@ -115,14 +103,14 @@ function Detail(props) {
           </div>
         </div>
         <div className="textblog">
-          <div className="isiartikel">
-            <div className="textartikel text-justify">
+          <div className="artcontent">
+            <div className="textarticle text-justify">
               {blogDetail.description}
             </div>
           </div>
         </div>
         <div className="comment">
-          <div className="judulhalaman">
+          <div className="titlepage">
             Comments
           </div>
           <div className="inputcomment">

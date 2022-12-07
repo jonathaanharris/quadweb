@@ -35,7 +35,8 @@ const Navbar = (props) => {
     <div className="col-lg-9 col-md-9 col-9 ">
       <div className="menu row align-items-center">
         <Link onClick={homeHandler} to="/" >Home</Link>
-        <Link to="/newblog" relative="path" >Add Blog</Link>
+        {token ? <Link to="/newblog" relative="path" >Add Blog</Link>
+          : ""}
         <form className="search" onSubmit={submitHandler}>
           <input value={search} onChange={searchHandler} placeholder="Search..." className="search-bar" type="text" />
         </form>
